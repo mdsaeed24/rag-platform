@@ -1,0 +1,23 @@
+.env
+.env.*
+!.env.example
+.venv/
+.venv-ui/
+.streamlit/secrets.toml
+__pycache__/
+*.py[cod]
+qdrant_data/
+logs/
+.DS_Store
+dist/
+.rag-server.lock
+# Generated evaluation output stays local; input cases remain versioned.
+/eval/*.json
+!/eval/questions.json
+!/eval/multitenant_questions.json
+!/eval/adversarial_cases.json
+!/eval/routing_cases.json
+/eval/*.csv
+.pytest_cache/
+*.pem
+*.key

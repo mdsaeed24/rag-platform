@@ -1,0 +1,9 @@
+# Versions verified in the existing Python 3.14 virtual environment.
+fastapi==0.142.2
+uvicorn==0.54.0
+sentence-transformers==6.1.0
+qdrant-client==1.19.1
+openai==3.24.0
+python-dotenv==1.2.4
+python-jose[cryptography]==3.5.0
+httpx==0.28.1

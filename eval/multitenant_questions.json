@@ -1,0 +1,11 @@
+[
+  {"username": "alice", "question": "How many days of annual leave do Acme employees get?", "reference_answer": "20 days per calendar year", "source": "data/acme/handbook.txt"},
+  {"username": "bob", "question": "What does the Acme CEO earn?", "reference_answer": "$240,000 per year", "source": "data/acme/salaries.txt"},
+  {"username": "alice", "question": "What does the CEO earn?", "reference_answer": "I don't know based on the provided documents.", "source": null},
+  {"username": "carol", "question": "What does the Globex CEO earn?", "reference_answer": "$310,000 per year", "source": "data/globex/salaries.txt"},
+  {"username": "carol", "question": "How many days of annual leave do Globex employees get?", "reference_answer": "25 days per calendar year", "source": "data/globex/handbook.txt"},
+  {"username": "bob", "question": "What does the Globex CEO earn?", "reference_answer": "I don't know based on the provided documents.", "source": null},
+  {"username": "carol", "question": "What does the Acme CEO earn?", "reference_answer": "I don't know based on the provided documents.", "source": null},
+  {"username": "alice", "question": "How many days per week can Acme employees work remotely?", "reference_answer": "Up to three days per week", "source": "data/acme/handbook.txt"},
+  {"username": "carol", "question": "When do Globex expenses require manager approval?", "reference_answer": "Above $1,000", "source": "data/globex/handbook.txt"}
+]

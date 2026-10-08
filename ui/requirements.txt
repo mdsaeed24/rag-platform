@@ -1,0 +1,3 @@
+# Install into .venv-ui; the backend's requirements.lock remains independent.
+streamlit==1.65.0
+httpx==0.28.1

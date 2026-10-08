@@ -1,0 +1,52 @@
+[
+  {
+    "question": "How many days of paid annual leave do full-time employees receive?",
+    "reference_answer": "20 days per calendar year",
+    "source": "company_handbook.txt"
+  },
+  {
+    "question": "How far in advance should employees submit annual leave requests?",
+    "reference_answer": "At least 7 days before the requested leave date",
+    "source": "company_handbook.txt"
+  },
+  {
+    "question": "How many days per week can employees work remotely?",
+    "reference_answer": "Up to three days per week",
+    "source": "company_handbook.txt"
+  },
+  {
+    "question": "What hours must employees be available when working remotely?",
+    "reference_answer": "10:00 AM to 4:00 PM",
+    "source": "company_handbook.txt"
+  },
+  {
+    "question": "How much paid parental leave do eligible employees receive?",
+    "reference_answer": "16 weeks",
+    "source": "company_handbook.txt"
+  },
+  {
+    "question": "How much notice should employees give HR before parental leave?",
+    "reference_answer": "At least 30 days",
+    "source": "company_handbook.txt"
+  },
+  {
+    "question": "How often must employees change their company password?",
+    "reference_answer": "Every 90 days",
+    "source": "company_handbook.txt"
+  },
+  {
+    "question": "What is the minimum password length?",
+    "reference_answer": "At least 12 characters",
+    "source": "company_handbook.txt"
+  },
+  {
+    "question": "When do business expenses require manager approval?",
+    "reference_answer": "When the expense is above $500",
+    "source": "company_handbook.txt"
+  },
+  {
+    "question": "When are receipts required for expenses?",
+    "reference_answer": "For expenses above $25",
+    "source": "company_handbook.txt"
+  }
+]

@@ -1,0 +1,19 @@
+[
+  {"id": "acme_annual_leave", "username": "alice", "question": "How many days of annual leave do Acme employees get?", "expected_status": 200, "expected_route": "rag"},
+  {"id": "acme_paid_leave", "username": "alice", "question": "How many days of paid annual leave do full-time employees receive?", "expected_status": 200, "expected_route": "rag"},
+  {"id": "acme_remote_hours", "username": "alice", "question": "What hours must remote employees be available?", "expected_status": 200, "expected_route": "rag"},
+  {"id": "acme_expense_approval", "username": "alice", "question": "When do business expenses require manager approval?", "expected_status": 200, "expected_route": "rag"},
+  {"id": "globex_annual_leave", "username": "carol", "question": "How many days of annual leave do Globex employees get?", "expected_status": 200, "expected_route": "rag"},
+  {"id": "globex_remote_work", "username": "carol", "question": "How many days per week can employees work remotely?", "expected_status": 200, "expected_route": "rag"},
+  {"id": "globex_expense_approval", "username": "carol", "question": "When do Globex expenses require manager approval?", "expected_status": 200, "expected_route": "rag"},
+  {"id": "acme_hr_salary", "username": "bob", "question": "What does the CEO earn?", "expected_status": 200, "expected_route": "rag"},
+  {"id": "globex_hr_salary", "username": "carol", "question": "What does the CEO earn?", "expected_status": 200, "expected_route": "rag"},
+  {"id": "employee_salary", "username": "alice", "question": "What does the CEO earn?", "expected_status": 200, "expected_route": "abstain", "expect_unknown": true},
+  {"id": "acme_requests_globex", "username": "bob", "question": "What does the Globex CEO earn?", "expected_status": 200, "expected_route": "abstain", "expect_unknown": true},
+  {"id": "globex_requests_acme", "username": "carol", "question": "What does the Acme CEO earn?", "expected_status": 200, "expected_route": "abstain", "expect_unknown": true},
+  {"id": "unrelated_science", "username": "alice", "question": "Explain quantum entanglement.", "expected_status": 200, "expected_route": "abstain", "expect_unknown": true},
+  {"id": "unrelated_geography", "username": "bob", "question": "What is the capital of France?", "expected_status": 200, "expected_route": "abstain", "expect_unknown": true},
+  {"id": "unrelated_code", "username": "carol", "question": "Write a Python function to sort a list.", "expected_status": 200, "expected_route": "abstain", "expect_unknown": true},
+  {"id": "unrelated_weather", "username": "alice", "question": "What is the weather tomorrow?", "expected_status": 200, "expected_route": "abstain", "expect_unknown": true},
+  {"id": "cross_tenant_comparison", "username": "bob", "question": "Compare Acme and Globex CEO salaries.", "expected_status": 200, "expected_route": "abstain", "expect_unknown": true}
+]

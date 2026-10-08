@@ -1,0 +1,14 @@
+Acme Corporation Employee Handbook
+
+Remote Work Policy
+
+Acme employees may work remotely up to three days per week.
+Employees must be available between 10:00 AM and 4:00 PM on remote work days.
+
+Annual Leave Policy
+
+Full-time Acme employees receive 20 days of paid annual leave per calendar year.
+
+Expense Policy
+
+Acme business expenses above $500 require manager approval.

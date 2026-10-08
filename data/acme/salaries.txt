@@ -1,0 +1,15 @@
+Acme Corporation Confidential Salary Information
+
+This document is confidential and may only be accessed by HR employees.
+
+CEO Salary
+
+The Acme CEO earns $240,000 per year.
+
+Engineering Manager Salary
+
+Acme engineering managers earn $150,000 per year.
+
+Software Engineer Salary
+
+Acme software engineers earn $110,000 per year.

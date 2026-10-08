@@ -23,7 +23,7 @@ Start the backend in one terminal:
 Start the interface in another:
 
 ```sh
-.venv-ui/bin/python -m streamlit run streamlit_app.py
+.venv-ui/bin/python -m streamlit run streamlit_app.py --server.address 127.0.0.1 --server.port 8501
 ```
 
 Open <http://127.0.0.1:8501>. Sign in with an existing demo account:
@@ -73,7 +73,7 @@ failures display a retry message and are not saved as answers.
 .venv-ui/bin/python -m pip --isolated --no-cache-dir check
 ```
 
-The 17 tests cover HTTP payloads and bearer headers, redirect blocking, sanitized
+The 20 tests cover HTTP payloads and bearer headers, redirect blocking, sanitized
 errors, invalid response shapes, login, citations, graph evidence, session
 isolation, account switching, token expiry, backend changes, and bounded history.
 Streamlit AppTest exercises actual app reruns with mocked API responses and
@@ -94,15 +94,26 @@ store, and writes `dist/ui-integration-smoke.json`. It covers all five answer
 routes, employee/cross-tenant abstention, invalid-token handling, readiness, and
 tenant isolation of the mocked outbound prompts. It requires no running server.
 
-## Publishing later
+## Streamlit Community Cloud
 
-This increment provides a local interface. See `GITHUB.md` for the public source
-repository and automated checks. Cloud hosting remains a separate step.
-A hosted Streamlit app needs an accessible hosted API; its
-localhost is not your laptop. Validate dependencies and provision the model,
-vector storage, and secrets on the selected backend host. The current native
-deployment lock targets macOS ARM64. The checked-in Streamlit configuration binds
-locally and disables usage telemetry; a hosting platform may need an address
-override. Replace/restrict public demo credentials and apply public access and
-usage controls before exposing a provider-backed app. Never commit
-`.streamlit/secrets.toml`; it and `.venv-ui/` are gitignored.
+Deploy repository `mdsaeed24/rag-platform`, branch `main`, entry point
+`ui/cloud_app.py`. Use Python 3.14 if offered. This entry point sits next to
+`ui/requirements.txt`, so Community Cloud installs only the UI dependencies.
+Do not select the root local entry point, which sits beside backend requirements.
+
+In Advanced settings → Secrets, set only:
+
+```toml
+RAG_API_URL = "https://YOUR-BACKEND.onrender.com"
+```
+
+Use the actual hosted API address, not this placeholder. No provider key or JWT
+secret belongs in the Streamlit app. Missing or local-only configuration shows
+“Backend setup required” and offers no login form. Environment variables still
+take precedence over Streamlit secrets. The root Streamlit config leaves the
+bind address and port to the host; the local command above sets them explicitly.
+
+See [the cloud deployment guide](../CLOUD.md) to prepare the free demo backend
+first. A sleeping backend may take about a minute to wake; open its health URL
+and retry Check connection before signing in. Runtime caches and audit logs are
+ephemeral on a free backend. Never commit `.streamlit/secrets.toml`.

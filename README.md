@@ -66,14 +66,14 @@ python3.14 -m venv .venv-ui
 # In one terminal:
 .venv/bin/python -m deploy.run serve
 # In another terminal:
-.venv-ui/bin/python -m streamlit run streamlit_app.py
+.venv-ui/bin/python -m streamlit run streamlit_app.py --server.address 127.0.0.1 --server.port 8501
 ```
 
 Open <http://127.0.0.1:8501>. See [the interface guide](ui/README.md) for demo
-accounts, API configuration, session behavior, and the 17 offline interface tests.
+accounts, API configuration, session behavior, and the 20 offline interface tests.
 Submitting a question uses the configured backend provider. See [the GitHub
 guide](GITHUB.md) for the public source repository, fresh-clone setup, automated
-checks, and which files remain local. Public application hosting is a later step.
+checks, and which files remain local. See [cloud deployment](CLOUD.md) for the prepared free demo backend and Streamlit Community Cloud setup. Account setup and a successful hosted deployment are still required.
 
 ## Native deployment package
 
@@ -108,7 +108,7 @@ are recorded in `eval/fresh_install_results.json` in the development workspace.
 ## Final offline verification
 
 [FINAL_RESULTS.md](FINAL_RESULTS.md) records the latest full validation and the
-remaining work. The current run passed 198 regression tests, all 84 cases across
+remaining work. The current run passed 201 regression tests, all 84 cases across
 the five existing evaluation suites, all 11 deployment smoke cases, and 300
 measured requests across ten pipeline scenarios. Stored payload fingerprints
 were unchanged. No real DeepSeek calls were made.
@@ -270,7 +270,7 @@ status, and elapsed generation time. The earlier context authorization event
 does not indicate successful generation. Provider exception messages and bodies
 are excluded from the audit trail.
 
-The full offline suite has 198 passing tests. Provider failure tests cover both
+The full offline suite has 201 passing tests. Provider failure tests cover both
 generation routes, recovery, cache exclusion, malformed/truncated completions,
 and an in-memory SDK transport that verifies
 the configured timeout and a single attempt. No DeepSeek calls are needed:
@@ -352,7 +352,7 @@ than live answer correctness or production latency gains. Run this script and
 other scripts that access the persistent collection sequentially with the RAG
 server stopped, since local Qdrant permits one owner at a time.
 
-The full offline regression suite now has 198 passing tests. The adversarial runner
+The full offline regression suite now has 201 passing tests. The adversarial runner
 explicitly disables answer caching so cases continue to exercise either fresh
 generation or the abstention router. The existing live Project 2 reports are
 historical evidence from before caching, routing, and GraphRAG were introduced.
@@ -652,7 +652,7 @@ hits avoided three mocked generation calls; seven cases generated mocked
 answers, two abstained, and two were rejected on revocation. The report is
 `eval/graph_cache_results.json`. It checks fresh authorized evidence on hits,
 tenant/role isolation, changed questions, token/graph version changes, revocation,
-and disabling graph caching. The full regression suite has 198 passing tests,
+and disabling graph caching. The full regression suite has 201 passing tests,
 including conflicting facts, revocation during hits, namespace isolation, and
 upstream failures. No new DeepSeek calls were made, and no live latency or cost
 savings are claimed. Existing vectors and ingestion were retained.

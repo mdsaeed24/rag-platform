@@ -1,6 +1,6 @@
 # Final offline validation
 
-Generated: 2026-10-08T04:26:16.513166+00:00. Status: **offline_checks_passed**.
+Generated: 2026-10-08T04:39:17.302488+00:00. Status: **offline_checks_passed**.
 
 The four-stage roadmap has local implementations of baseline RAG, tenant/role authorization, semantic caching and routing, and bounded GraphRAG. This report verifies the listed offline cases; it does not certify production readiness or live GraphRAG answer correctness.
 
@@ -8,7 +8,7 @@ The four-stage roadmap has local implementations of baseline RAG, tenant/role au
 
 | Check | Result |
 | --- | --- |
-| Regression tests | 198/198; 0 skipped |
+| Regression tests | 201/201; 0 skipped |
 | adversarial | 22/22 |
 | routing | 17/17 |
 | rag_cache | 15/15 |
@@ -24,16 +24,16 @@ The four-stage roadmap has local implementations of baseline RAG, tenant/role au
 
 | Scenario | Median ms | p95 ms | Mocked generations | Retrievals | Graph expansions |
 | --- | ---: | ---: | ---: | ---: | ---: |
-| rag_fresh | 5.369 | 5.647 | 30 | 30 | 0 |
-| rag_exact | 5.362 | 5.611 | 0 | 30 | 0 |
-| rag_semantic | 5.497 | 5.834 | 0 | 30 | 0 |
-| graph_fresh | 7.879 | 8.787 | 30 | 30 | 30 |
-| graph_exact | 7.841 | 8.438 | 0 | 30 | 30 |
-| graph_semantic | 7.910 | 8.785 | 0 | 30 | 30 |
-| employee_abstain | 5.355 | 6.334 | 0 | 30 | 0 |
-| foreign_tenant_abstain | 5.444 | 6.277 | 0 | 30 | 0 |
-| incomplete_graph_abstain | 7.695 | 8.163 | 0 | 30 | 30 |
-| invalid_token | 0.322 | 0.369 | 0 | 0 | 0 |
+| rag_fresh | 5.552 | 6.741 | 30 | 30 | 0 |
+| rag_exact | 5.517 | 6.906 | 0 | 30 | 0 |
+| rag_semantic | 5.612 | 7.589 | 0 | 30 | 0 |
+| graph_fresh | 8.107 | 14.682 | 30 | 30 | 30 |
+| graph_exact | 8.013 | 8.654 | 0 | 30 | 30 |
+| graph_semantic | 8.084 | 8.368 | 0 | 30 | 30 |
+| employee_abstain | 5.498 | 6.235 | 0 | 30 | 0 |
+| foreign_tenant_abstain | 5.565 | 6.012 | 0 | 30 | 0 |
+| incomplete_graph_abstain | 7.974 | 8.848 | 0 | 30 | 30 |
+| invalid_token | 0.341 | 0.384 | 0 | 0 | 0 |
 
 Sequential in-process /ask including embedding, storage opening, authorization, routing, graph and cache work. Excludes login, model startup, HTTP transport, seeds and warmup. Completions and audit writes are mocked; not live latency or a load test.
 
@@ -45,9 +45,9 @@ Cache-hit scenarios still perform retrieval and, for GraphRAG, graph expansion. 
 
 | Identity | Filtered median ms | Unfiltered median ms | Paired overhead median ms | Validation median ms |
 | --- | ---: | ---: | ---: | ---: |
-| acme/employee | 0.1207 | 0.1138 | 0.0073 | 0.0013 |
-| acme/hr | 0.1256 | 0.1138 | 0.0113 | 0.0020 |
-| globex/hr | 0.1245 | 0.1105 | 0.0122 | 0.0020 |
+| acme/employee | 0.1220 | 0.1146 | 0.0073 | 0.0013 |
+| acme/hr | 0.1262 | 0.1144 | 0.0120 | 0.0020 |
+| globex/hr | 0.1259 | 0.1143 | 0.0116 | 0.0020 |
 
 Qdrant query and defense validation only; excludes model loading, embedding, storage opening, HTTP, and LLM. Tiny local corpus; not a production load benchmark.
 
@@ -61,7 +61,7 @@ In the full development workspace, stop any RAG process sharing this local Qdran
 
 The runner uses dummy provider credentials, forces cached-model offline mode, blocks socket connections in the coordinator and test subprocess, and runs storage-owning phases sequentially. Detailed fresh reports and private logs are written to `dist/final-validation/`; the aggregate machine-readable result is `eval/final_results.json`. Historical baseline/live results are preserved. No ingestion runs. Evaluation tools, tests, and raw reports are excluded from the deployment archive; only this aggregate Markdown summary is packaged. Streamlit interface tests run separately in the UI environment; see ui/README.md.
 
-Validation input SHA-256: `a0f83ef58928cceb24e0c0d5c77e51025225faa6ee683de4c5a55b4d74867468`.
+Validation input SHA-256: `4560028ca29ac4513c48b955e071a2d07ecb5bc6aa8b026836f64bb102a292d6`.
 
 ## Remaining work
 

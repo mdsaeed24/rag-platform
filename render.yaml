@@ -1,0 +1,20 @@
+# Free demo only: no disk or paid instance. Provider calls still incur API costs.
+services:
+  - type: web
+    name: rag-platform-api
+    runtime: docker
+    plan: free
+    repo: https://github.com/mdsaeed24/rag-platform
+    branch: main
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /health/ready
+    autoDeployTrigger: "off"
+    envVars:
+      - key: DEEPSEEK_API_KEY
+        sync: false
+      - key: JWT_SECRET_KEY
+        generateValue: true
+      - key: MAX_INFLIGHT_ASK
+        value: "1"
+      - key: MAX_INFLIGHT_LOGIN
+        value: "1"

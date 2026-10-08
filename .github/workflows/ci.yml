@@ -79,3 +79,28 @@ jobs:
           .venv-ui/bin/python -m pip check
       - name: Interface tests
         run: .venv-ui/bin/python -m deploy.ci ui
+
+  linux-container:
+    needs: source-review
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - name: Build Linux image and run offline backend regression checks
+        run: docker build --target validation -t rag-validation .
+      - name: Build runtime image
+        run: docker build --target runtime -t rag-runtime .
+      - name: Check startup, readiness, login and abstention within free-tier memory
+        run: |
+          docker run --detach --name rag-probe --network none --memory 512m --memory-swap 512m --cpus 1 \
+            -e DEEPSEEK_API_KEY=offline-ci-no-provider-access \
+            -e JWT_SECRET_KEY=$(python -c 'import secrets; print(secrets.token_urlsafe(48))') rag-runtime
+          docker exec rag-probe python -m deploy.container_probe
+      - name: Show sanitized container diagnostics and clean up
+        if: always()
+        run: |
+          docker inspect rag-probe --format '{{json .State}}' || true
+          docker logs rag-probe || true
+          docker rm --force rag-probe || true

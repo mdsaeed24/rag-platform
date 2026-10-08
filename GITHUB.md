@@ -60,8 +60,8 @@ backend job uses Python 3.14.6 on the macOS ARM64 runner matching the native loc
 It installs exact package versions and provisions the public MiniLM model before
 blocking socket connections during tests. It runs the backend regression suite,
 11 deployment smoke cases, nine UI-to-FastAPI integration cases, and builds the
-source archive. The separate Linux interface job runs 17 Streamlit/client tests.
-Both application jobs use temporary fixtures and never need a persistent demo
+source archive. The separate Linux interface job runs 20 Streamlit/client tests.
+These application jobs use temporary fixtures and never need a persistent demo
 vector collection. A CI pass does not establish live answer quality, production
 capacity, or backend Linux compatibility.
 
@@ -88,3 +88,9 @@ Publishing this repository does not host the API or interface. The next hosting
 step needs a backend platform, validated dependencies, model/storage provisioning,
 and runtime secrets. A hosted Streamlit interface must use that hosted API's
 HTTPS address rather than the laptop's localhost. See `ui/README.md`.
+
+See [CLOUD.md](CLOUD.md) for the prepared free Render demo container and the
+Streamlit Community Cloud entry point. A separate Linux container CI job runs
+offline backend checks and a startup/login/abstention smoke under 512 MB. A
+passing CI run is required before deploying the container; account setup and
+runtime secrets are still required on the hosting service.

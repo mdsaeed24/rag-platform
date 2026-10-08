@@ -3,9 +3,9 @@
 This package targets the environment validated in this workspace: **Python 3.14
 on macOS ARM64** (currently Python 3.14.6). It runs one Uvicorn worker with local
 Qdrant. It does not deploy a public endpoint, container, reverse proxy, or shared
-database. Docker is not installed in the current environment.
+database. For the separate Linux demo container and Streamlit Cloud setup, see [CLOUD.md](../CLOUD.md). Docker is not installed locally; container validation runs in GitHub Actions.
 
-Validation completed on this host: a clean dependency installation, 198 regression
+Validation completed on this host: a clean dependency installation, 201 regression
 tests, 11/11 isolated smoke cases from the extracted release, and preflight against
 the existing initialized collection. A temporary
 localhost HTTP server also passed liveness, readiness, authenticated employee

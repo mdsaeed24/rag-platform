@@ -9,12 +9,12 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 RELEASE_FILES = (
-    ".env.example", ".gitignore", "README.md", "GITHUB.md", "FINAL_RESULTS.md", "requirements.txt", "requirements.lock",
+    ".env.example", ".gitignore", "README.md", "GITHUB.md", "CLOUD.md", "FINAL_RESULTS.md", "requirements.txt", "requirements.lock",
     "acl_config.py", "audit.py", "auth.py", "authorization.py", "graph_rag.py",
     "ingest.py", "llm.py", "main.py", "operations.py", "query_router.py", "search.py", "semantic_cache.py",
     "deploy/__init__.py", "deploy/README.md", "deploy/lock_dependencies.py",
     "deploy/package.py", "deploy/run.py", "deploy/smoke.py",
-    "streamlit_app.py", "ui/__init__.py", "ui/api.py", "ui/session.py",
+    "streamlit_app.py", "ui/__init__.py", "ui/app.py", "ui/cloud_app.py", "ui/api.py", "ui/session.py",
     "ui/requirements.txt", "ui/README.md", "ui/integration_smoke.py",
     ".streamlit/config.toml", ".streamlit/secrets.toml.example",
 )

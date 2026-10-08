@@ -40,3 +40,9 @@
 !data/globex/salaries.txt
 !tests/
 !tests/test_*.py
+!eval/
+!eval/*.py
+!eval/questions.json
+!eval/multitenant_questions.json
+!eval/adversarial_cases.json
+!eval/routing_cases.json

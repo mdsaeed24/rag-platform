@@ -16,7 +16,14 @@ RUN python -m pip install --no-cache-dir --only-binary=:all: -r requirements.txt
     && python -m pip check
 
 # .dockerignore is an allowlist. No local .env, vectors, logs or model cache.
-COPY . ./
+COPY acl_config.py audit.py auth.py authorization.py graph_rag.py ingest.py llm.py main.py \
+    operations.py query_router.py search.py semantic_cache.py streamlit_app.py ./
+COPY .env.example .gitignore README.md GITHUB.md FINAL_RESULTS.md CLOUD.md ./
+COPY deploy/ ./deploy/
+COPY ui/ ./ui/
+COPY .streamlit/ ./.streamlit/
+COPY data/acme/ ./data/acme/
+COPY data/globex/ ./data/globex/
 RUN python -m deploy.lock_dependencies \
     && python -c 'from sentence_transformers import SentenceTransformer; SentenceTransformer("all-MiniLM-L6-v2", trust_remote_code=False)'
 
@@ -38,8 +45,9 @@ USER root
 RUN apt-get update && apt-get install -y --no-install-recommends git \
     && rm -rf /var/lib/apt/lists/*
 COPY --chown=rag:rag tests/ ./tests/
+COPY --chown=rag:rag eval/ ./eval/
 USER rag
-RUN python -m deploy.ci backend
+RUN python -m deploy.ci backend || (tail -n 100 dist/ci/backend/unit_tests.log && exit 1)
 
 # Keep the default target identical to the image deployed on the host.
 FROM base AS runtime
